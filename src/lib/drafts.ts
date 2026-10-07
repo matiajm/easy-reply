@@ -10,7 +10,11 @@ const first = (e: StudentEmail) => e.from.name.split(" ")[0];
  * Later: replace with a Claude call that writes in the professor's voice, but KEEP these as the fallback
  * and as the baseline for evals.
  */
-export function draftReply(e: StudentEmail, outcomeId: string, param?: string | number): string {
+export function draftReply(
+  e: StudentEmail,
+  outcomeId: string,
+  param?: string | number,
+): string {
   const n = first(e);
   switch (outcomeId) {
     case "approve":
@@ -28,7 +32,7 @@ export function draftReply(e: StudentEmail, outcomeId: string, param?: string | 
     case "excuse":
       return `Hi ${n},\n\nThank you for the paperwork. Your absence is excused and you can take the makeup on ${param ?? "[date]"}.${sign}`;
     case "docs":
-      return `Hi ${n},\n\nThank you for letting me know. Could you send documentation with the date of the absence? Then I'll schedule your makeup right away.${sign}`;
+      return `Hi ${n},\n\nThank you for letting me know. I don't see documentation attached. Please send a note that shows the date of the absence, and I'll schedule your makeup.${sign}`;
     case "answer":
       return `Hi ${n},\n\nMy office hours are Tuesday and Thursday, 2:00-3:30 PM, Building 3, Room 3211. They are also on page 2 of the syllabus.${sign}`;
     case "ferpa":
